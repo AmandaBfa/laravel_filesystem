@@ -16,3 +16,5 @@ Route::get('/storage_local_check_file', [FileController::class, 'storageLocalChe
 
 Route::get('/storage_local_store_json', [FileController::class, 'storeJSON'])->name('storage.local.store.json');
 Route::get('/storage_local_read_json', [FileController::class, 'readJSON'])->name('storage.local.read.json');
+
+Route::get('/storage_local_list', [FileController::class, 'listFiles'])->name('storage.local.list');

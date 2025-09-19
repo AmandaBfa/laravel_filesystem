@@ -99,4 +99,19 @@ class FileController extends Controller
         echo '<pre>';
         print_r($data);
     }
+
+    public function listFiles()
+    {
+        $files = Storage::disk('public')->files();
+
+        // TODOS ESSES ERAM PARA ESTAREM FUNCIONANDO -> AULA 373
+        // $files = Storage::disk('public')->files(null, true); --> esse era para estar aparecendo as outras pastas dentro da pasta public 
+
+        // $files = Storage::disk('public')->directories();
+        // $files = Storage::disk('public')->files('meus_arquivos');
+        // $files = Storage::disk('local')->files();
+
+        echo '<pre>';
+        print_r($files);
+    }
 }

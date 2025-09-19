@@ -24,8 +24,13 @@ class FileController extends Controller
         echo "Fim!";
     }
 
-    public function storegeLocalAppend()
+    public function storageLocalAppend()
     {
-        Storage::append('file3.txt', Str::random(100));
+        // Storage:append('file3.txt', Str::random(100)); --> jeito que não funciona nesse meu codigo
+        // Storage::disk('local')->append('file3.txt', Str::random(100));  --> outro jeito de fazer que tbm não da certo
+
+        Storage::disk('public')->append('file3.txt', Str::random(100)); // --> jeito q da certo
+
+        return redirect()->route('home');
     }
 }

@@ -10,6 +10,8 @@
 
                     <a href="{{ route('storage.local.create') }}" class="btn btn-primary">Criar Arquivo no Storage
                         Local</a>
+                    <a href="{{ route('storage.local.append') }}" class="btn btn-primary">Acrescentar Conteúdo no Storage
+                        Local</a>
 
                 </div>
 

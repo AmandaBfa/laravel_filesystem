@@ -18,6 +18,13 @@
 
                 </div>
 
+                <div class="d-flex gap-5 mt-5">
+
+                    <a href="{{ route('storage.local.check.file') }}" class="btn btn-primary">Verificar a existência do
+                        Arquivo</a>
+
+                </div>
+
             </div>
         </div>
     </div>

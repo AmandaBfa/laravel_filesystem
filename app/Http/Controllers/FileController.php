@@ -50,4 +50,25 @@ class FileController extends Controller
             echo "<p>$line</p>";
         }
     }
+
+    public function storageLocalCheckFile()
+    {
+        $exists = Storage::disk('public')->exists('file1.txt');
+        //ou $exists = Storage::disk('local')->exists('file1.txt');
+
+        // if (Storage::disk('public')->exists('file1.txt')) ==> da para fazer assim tbm
+        if ($exists) {
+            echo 'O ficheio existe';
+        } else {
+            echo 'O ficheio não existe';
+        }
+
+        // so uma forma de que da para manipular(a view) desse arquivo sem muito trabalho
+        // echo '<br>';
+        // if (Storage::disk('public')->missing('file100.txt')) {
+        //     echo 'O ficheio não existe';
+        // } else {
+        //     echo 'O ficheio existe';
+        // }
+    }
 }

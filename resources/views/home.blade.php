@@ -22,6 +22,8 @@
 
                     <a href="{{ route('storage.local.check.file') }}" class="btn btn-primary">Verificar a existência do
                         Arquivo</a>
+                    <a href="{{ route('storage.local.store.json') }}" class="btn btn-primary">Guardar JSON</a>
+                    <a href="{{ route('storage.local.read.json') }}" class="btn btn-primary">Ler JSON</a>
 
                 </div>
 

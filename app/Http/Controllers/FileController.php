@@ -71,4 +71,32 @@ class FileController extends Controller
         //     echo 'O ficheio existe';
         // }
     }
+
+    public function storeJSON()
+    {
+        $data = [
+            [
+                'name' => 'joao',
+                'email' => 'joao@gmail.com'
+            ],
+            [
+                'name' => 'ana',
+                'email' => 'ana@gmail.com'
+            ],
+            [
+                'name' => 'carlos',
+                'email' => 'carlos@gmail.com'
+            ]
+        ];
+
+        Storage::disk('public')->put('data.json', json_encode($data));
+        echo 'Ficheiro JSON criado';
+    }
+
+    public function readJSON()
+    {
+        $data = Storage::disk('public')->json('data.json');
+        echo '<pre>';
+        print_r($data);
+    }
 }

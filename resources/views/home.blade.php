@@ -33,6 +33,8 @@
 
                     <a href="{{ route('storage.local.create.folder') }}" class="btn btn-primary">Criar Pasta</a>
                     <a href="{{ route('storage.local.delete.folder') }}" class="btn btn-primary">Remover Pasta</a>
+                    <a href="{{ route('storage.local.list.files.metadata') }}" class="btn btn-primary">Listar Ficheiros
+                        com Metadatas</a>
 
                 </div>
 

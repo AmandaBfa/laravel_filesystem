@@ -19,8 +19,8 @@ class FileController extends Controller
         // Storage::put('file2.txt', 'Conteudo do ficheiro 2'); esse é o codigo que nao deu certo, não roda
         // Storage::disk('local')->put('file2.txt', 'Conteudo do ficheiro 2'); outro que não deu certo, apenas os de baixo que dão certo
 
-        Storage::disk('public')->put('file1.txt', 'Conteudo do ficheiro 1'); // com o public ele fica disponivel ao public (sem esse disk, porem nesse codigo atual meu n estava dando certo)
-        Storage::disk('public')->put('file2.txt', 'Conteudo do ficheiro 2');
+        Storage::put('file1.txt', 'Conteudo do ficheiro 1'); // com o public ele fica disponivel ao public (sem esse disk, porem nesse codigo atual meu n estava dando certo)
+        Storage::put('file2.txt', 'Conteudo do ficheiro 2');
 
         echo "Fim!";
     }
@@ -30,21 +30,21 @@ class FileController extends Controller
         // Storage:append('file3.txt', Str::random(100)); --> jeito que não funciona nesse meu codigo
         // Storage::disk('local')->append('file3.txt', Str::random(100));  --> outro jeito de fazer que tbm não da certo
 
-        Storage::disk('public')->append('file3.txt', Str::random(100)); // --> jeito q da certo
+        Storage::append('file3.txt', Str::random(100)); // --> jeito q da certo
 
         return redirect()->route('home');
     }
 
     public function storageLocalRead()
     {
-        $content = Storage::disk('public')->get('file1.txt');
+        $content = Storage::get('file1.txt');
         // $content = Storage::disk('local')->get('file1.txt');
         echo $content;
     }
 
     public function storageLocalReadMulti()
     {
-        $lines = Storage::disk('public')->get('file3.txt');
+        $lines = Storage::get('file3.txt');
         $lines = explode(PHP_EOL, $lines);
 
         foreach ($lines as $line) {
@@ -54,10 +54,10 @@ class FileController extends Controller
 
     public function storageLocalCheckFile()
     {
-        $exists = Storage::disk('public')->exists('file1.txt');
+        $exists = Storage::exists('file1.txt');
         //ou $exists = Storage::disk('local')->exists('file1.txt');
 
-        // if (Storage::disk('public')->exists('file1.txt')) ==> da para fazer assim tbm
+        // if (Storage::exists('file1.txt')) ==> da para fazer assim tbm
         if ($exists) {
             echo 'O ficheio existe';
         } else {
@@ -66,7 +66,7 @@ class FileController extends Controller
 
         // so uma forma de que da para manipular(a view) desse arquivo sem muito trabalho
         // echo '<br>';
-        // if (Storage::disk('public')->missing('file100.txt')) {
+        // if (Storage::missing('file100.txt')) {
         //     echo 'O ficheio não existe';
         // } else {
         //     echo 'O ficheio existe';
@@ -90,25 +90,25 @@ class FileController extends Controller
             ]
         ];
 
-        Storage::disk('public')->put('data.json', json_encode($data));
+        Storage::put('data.json', json_encode($data));
         echo 'Ficheiro JSON criado';
     }
 
     public function readJSON()
     {
-        $data = Storage::disk('public')->json('data.json');
+        $data = Storage::json('data.json');
         echo '<pre>';
         print_r($data);
     }
 
     public function listFiles()
     {
-        $files = Storage::disk('public')->files(null, true);
+        $files = Storage::files(null, true);
 
         // TODOS ESSES ERAM PARA ESTAREM FUNCIONANDO -> AULA 373
-        // $files = Storage::disk('public')->files(null, true); --> esse era para estar aparecendo as outras pastas dentro da pasta public 
-        // $files = Storage::disk('public')->directories();
-        // $files = Storage::disk('public')->files('meus_arquivos');
+        // $files = Storage::files(null, true); --> esse era para estar aparecendo as outras pastas dentro da pasta public 
+        // $files = Storage::directories();
+        // $files = Storage::files('meus_arquivos');
         // $files = Storage::disk('local')->files();
 
         echo '<pre>';
@@ -127,18 +127,18 @@ class FileController extends Controller
     public function createFolder()
     {
         // novamente, esse disk('public') so serve pq nesse meu codigo, os comandos não estão encontrando o caminho correto, que é a pasta public!! mas tem alguma auteração que apos ela não precisa
-        Storage::disk('public')->makeDirectory('documents');
-        Storage::disk('public')->makeDirectory('documents/teste');
+        Storage::makeDirectory('documents');
+        Storage::makeDirectory('documents/teste');
     }
 
     public function deleteFolder()
     {
-        Storage::disk('public')->deleteDirectory('documents');
+        Storage::deleteDirectory('documents');
     }
 
     public function listFilesWithMetadata()
     {
-        $list_files = Storage::disk('public')->allFiles();
+        $list_files = Storage::allFiles();
 
         $files = [];
 
@@ -146,9 +146,9 @@ class FileController extends Controller
 
             $files[] = [
                 'name' => $file,
-                'size' => round(Storage::disk('public')->size($file) / 1024, 2) . 'Kb',
-                'last_modified' => Carbon::createFromTimestamp(Storage::disk('public')->lastModified($file))->format('d-m-Y H:i:s'),
-                'mime_type' => Storage::disk('public')->mimeType($file)
+                'size' => round(Storage::size($file) / 1024, 2) . 'Kb',
+                'last_modified' => Carbon::createFromTimestamp(Storage::lastModified($file))->format('d-m-Y H:i:s'),
+                'mime_type' => Storage::mimeType($file)
             ];
         }
 

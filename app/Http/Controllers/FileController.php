@@ -102,16 +102,24 @@ class FileController extends Controller
 
     public function listFiles()
     {
-        $files = Storage::disk('public')->files();
+        $files = Storage::disk('public')->files(null, true);
 
         // TODOS ESSES ERAM PARA ESTAREM FUNCIONANDO -> AULA 373
         // $files = Storage::disk('public')->files(null, true); --> esse era para estar aparecendo as outras pastas dentro da pasta public 
-
         // $files = Storage::disk('public')->directories();
         // $files = Storage::disk('public')->files('meus_arquivos');
         // $files = Storage::disk('local')->files();
 
         echo '<pre>';
         print_r($files);
+    }
+
+    public function deleteFiles()
+    {
+        Storage::delete('file1.txt');
+        echo 'Ficheiro removido com sucesso.';
+
+        // delete all files
+        // Storage::delete(Storage::files()); ==> metodo que apaga todos os arquivos que estao no storage
     }
 }

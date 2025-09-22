@@ -122,4 +122,16 @@ class FileController extends Controller
         // delete all files
         // Storage::delete(Storage::files()); ==> metodo que apaga todos os arquivos que estao no storage
     }
+
+    public function createFolder()
+    {
+        // novamente, esse disk('public') so serve pq nesse meu codigo, os comandos não estão encontrando o caminho correto, que é a pasta public!! mas tem alguma auteração que apos ela não precisa
+        Storage::disk('public')->makeDirectory('documents');
+        Storage::disk('public')->makeDirectory('documents/teste');
+    }
+
+    public function deleteFolder()
+    {
+        Storage::disk('public')->deleteDirectory('documents');
+    }
 }

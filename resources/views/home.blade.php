@@ -29,6 +29,13 @@
 
                 </div>
 
+                <div class="d-flex gap-5 mt-5">
+
+                    <a href="{{ route('storage.local.create.folder') }}" class="btn btn-primary">Criar Pasta</a>
+                    <a href="{{ route('storage.local.delete.folder') }}" class="btn btn-primary">Remover Pasta</a>
+
+                </div>
+
             </div>
         </div>
     </div>

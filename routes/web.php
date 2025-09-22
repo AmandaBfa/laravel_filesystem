@@ -19,3 +19,7 @@ Route::get('/storage_local_read_json', [FileController::class, 'readJSON'])->nam
 
 Route::get('/storage_local_list', [FileController::class, 'listFiles'])->name('storage.local.list');
 Route::get('/storage_local_delete', [FileController::class, 'deleteFiles'])->name('storage.local.delete');
+
+// folders
+Route::get('/storage_local_create_folder', [FileController::class, 'createFolder'])->name('storage.local.create.folder');
+Route::get('/storage_local_delete_folder', [FileController::class, 'deleteFolder'])->name('storage.local.delete.folder');

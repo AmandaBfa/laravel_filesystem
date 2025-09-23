@@ -184,8 +184,16 @@ class FileController extends Controller
         // guardar o ficheiro com o nome original: 
         // $request->file('arquivo')->storeAs('public', $request->file('arquivo')->getClientOriginalName());
         // so para o codigo ficar mais legivel
-        $filename = $request->file('arquivo')->getClientOriginalName();
-        $request->file('arquivo')->storeAs('public', $filename);
+        // $filename = $request->file('arquivo')->getClientOriginalName();
+        // $request->file('arquivo')->storeAs('public', $filename);
+
+        // ---------------------------------------------------------------------------------------------------
+        // upload de ficheiro com validação
+        $request->validate([
+            'arquivo' => 'required|mimes:pdf,jpg,png|max:100'
+        ]);
+
+        $request->file('arquivo')->store('public');
 
         echo 'Ficheiro enviado com sucesso';
     }

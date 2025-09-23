@@ -39,7 +39,28 @@
 
                 </div>
 
+                <hr>
+
             </div>
+
+            <div>
+                <p class="display-6">Upload de Arquivos</p>
+                <form action="{{ route('storage.local.upload') }}" method="post" enctype="multipart/form-data">
+
+                    @csrf
+
+                    <div class="mb-3">
+                        <label for="arquivo" class="form-label">Arquivo</label>
+                        <input type="file" class="form-control" id="arquivo" name="arquivo">
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary px-5">Enviar</button>
+                    </div>
+
+                </form>
+            </div>
+
         </div>
     </div>
 
